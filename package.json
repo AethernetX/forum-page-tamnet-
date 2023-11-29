@@ -1,0 +1,11 @@
+{
+  "name": "forum-page",
+  "version": "1.0.0",
+  "description": "Tamnet is a forum page similar to reddit and quora",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
