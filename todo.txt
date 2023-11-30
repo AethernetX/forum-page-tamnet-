@@ -1,3 +1,4 @@
 import mysql in index.js when it's time
 define database when it's time
 connect database when it's time
+navigation bar
