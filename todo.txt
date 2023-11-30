@@ -1,4 +1,15 @@
 import mysql in index.js when it's time
 define database when it's time
 connect database when it's time
-navigation bar
+navigation bar -- note need to possibly automate changes for links in navbar
+figure out login system -- might be okay to always join signed out
+
+for topics page, figure out how to load all topic content
+
+make sure there is a route for all views
+
+make logout button stand out?
+
+register page? --> (when user opens page)
+register --> homepage
+sign out button?

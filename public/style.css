@@ -47,11 +47,3 @@ body {
 .navbar-links li:hover {
     background-color: #555;
 }
-
-.main-header {
-    font-size: 72px;
-    background: -webkit-linear-gradient(45deg,#58e2ee, #ee58a3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: max-content;
-}

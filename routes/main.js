@@ -4,4 +4,8 @@ module.exports = function(app, siteData){
     app.get("/", function(req,res){
         res.render("index.ejs", siteData);
     });
+
+    app.get("/topics", function(req,res){
+        res.render("topics.ejs", siteData);
+    });
 };
