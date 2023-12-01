@@ -13,7 +13,7 @@ body {
     position: relative;
     justify-content: space-between;
     align-items: center;
-    background-color: #023436;
+/*    background-color: #023436;*/
     color: white;
 }
 
@@ -21,7 +21,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     margin: .5rem;
-    background: -webkit-linear-gradient(45deg,#58e2ee, #ee58a3);
+    background: -webkit-linear-gradient(45deg,#74D2CD, #DC2B9E);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: max-content;
@@ -40,10 +40,38 @@ body {
 .navbar-links li a{
     display: block;
     text-decoration: none;
-    color: white;
+    color: black;
     padding: 1rem;
 }
 
 .navbar-links li:hover {
     background-color: #555;
+}
+
+/*login div*/
+
+.login-box{
+    position: 50 20;
+    padding: 2rem;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid;
+}
+
+.sign-in-button{
+    padding: 0.5rem;
+    width: max-content;
+    background-color: #74D2CD;
+}
+
+.sign-in-button:hover{
+    background-color: #DC2B9E;
+}
+
+.sign-in-button a{
+    color: #fff;
+    text-decoration: none;
 }
