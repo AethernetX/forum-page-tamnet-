@@ -12,4 +12,8 @@ module.exports = function(app, siteData){
     app.get("/topics", function(req,res){
         res.render("topics.ejs", siteData);
     });
+
+    app.get("/register", function(req, res){
+        res.render("register.ejs", siteData);
+    })
 };

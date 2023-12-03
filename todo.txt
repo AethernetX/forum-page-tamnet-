@@ -14,8 +14,6 @@ for topics page, figure out how to load all topic content
 
 make sure there is a route for all views
 
-the navigation bar is one pixel down, fix it please
-
 make logout button stand out?
 
 register page? --> (when user opens page)
