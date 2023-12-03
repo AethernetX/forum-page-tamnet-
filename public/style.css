@@ -45,8 +45,10 @@ body {
     padding: 1rem;
 }
 
-.navbar-links li:hover {
-    background-color: #555;
+.navbar-links li a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+    text-decoration-thickness: 3px;
 }
 
 /*login div*/
@@ -68,10 +70,12 @@ body {
     padding: 0.5rem;
     width: max-content;
     background-color: #74D2CD;
+    transition: ease-out 100ms;
 }
 
 .sign-in-button:hover{
     background-color: #DC2B9E;
+    transition: ease-out 100ms;
 }
 
 .sign-in-button a{
@@ -81,4 +85,42 @@ body {
 
 .form {
     margin-left: 0.2rem;
+}
+
+/*Feed and post css*/
+
+.feed{
+    margin: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    border-radius: 3px;
+}
+
+.post{
+    background-color: #cfe9eb;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 5px;
+    border: solid;
+    border-width: 1px;
+    margin-bottom: 1rem;
+}
+
+.topic-tab{
+    color: #787878;
+}
+
+.post-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: .2rem 0 .5rem 0;
+}
+
+.content-preview{
+    margin: .5rem 0 .5rem 0;
+}
+
+.statistics{
+    color:#DC2B9E;
 }
