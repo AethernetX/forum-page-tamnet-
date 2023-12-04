@@ -9,6 +9,8 @@ body {
     background-color: #BED6D8;
 }
 
+/*Navbar*/
+
 .navbar {
     display: flex;
     position: relative;
@@ -50,6 +52,25 @@ body {
     text-underline-offset: 0.5rem;
     text-decoration-thickness: 3px;
 }
+
+
+.navbar-links .logout{
+    background-color: #DC2B9E;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-top: .5rem;
+    margin-right: .2rem;
+ }
+
+.navbar-links .logout:hover{
+    background-color: #e574bd;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-top: .5rem;
+    margin-right: .2rem;
+ } 
 
 /*login div*/
 
