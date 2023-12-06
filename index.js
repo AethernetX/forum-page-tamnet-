@@ -2,14 +2,30 @@
 var express = require("express");
 var ejs = require("ejs");
 var bodyparser = require("body-parser");
-// import mysql when it's time
+var mysql = require("mysql");
 
 //create express application object
 const app = express();
 const port = 8000;
 app.use(bodyparser.urlencoded({extended: true}));
 
-//define database when it's time
+//define database connection
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'tamAdmin',
+    password: 'tam2424',
+    database: 'tamnet'
+});
+
+//error checking
+db.connect((err) => {
+    if(err){
+        throw err;
+    }
+    console.log("database connected!");
+});
+
+global.db = db;
 
 //link stylesheet
 app.use(express.static(__dirname + "/public"));
