@@ -16,4 +16,8 @@ module.exports = function(app, siteData){
     app.get("/register", function(req, res){
         res.render("register.ejs", siteData);
     })
+
+    app.get("/post", function(req, res){
+        res.render("post.ejs", siteData);
+    })
 };

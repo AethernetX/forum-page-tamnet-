@@ -118,7 +118,6 @@ body {
     width: 50%;
     height: 650px;
     border-radius: 3px;
-    overflow: scroll;
 }
 
 .post{
@@ -151,17 +150,28 @@ body {
 /*Post button*/
 .post-button{
     background-color: #DC2B9E;
-    position: absolute;
+    position: fixed;
     
     bottom: 10%;
     right: 10%;
     width: 3rem;
     height: 3rem;
-    border-radius: 1.5rem;
+    border-radius: 1.5rem; 
     transition: ease-out;
 }
 
 .post-button:hover{
     background-color: #e574bd;
     transition: ease-in;
+}
+
+.post-button svg{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.post-button svg path{
+    stroke: #eac4dd;
 }
