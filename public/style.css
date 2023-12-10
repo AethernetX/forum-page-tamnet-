@@ -108,6 +108,45 @@ body {
     margin-left: 0.2rem;
 }
 
+/*login div*/
+.register-box{
+    position: 50 20;
+    padding: 2rem;
+    background-color: #74d2cd67;
+    background-blend-mode: lighten;
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid;
+}
+
+.sign-up-button{
+    padding: 0.5rem;
+    width: max-content;
+    background-color: rgb(116, 210, 116);
+    transition: ease-out 100ms;
+}
+
+.sign-up-button:hover{
+    background-color: rgb(166, 213, 166);
+    transition: ease-out 100ms;
+}
+
+.sign-up-button a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.form {
+    margin-left: 0.2rem;
+}
+
+.alert{
+    color: red;
+}
+
 /*Feed and post css*/
 
 .feed{

@@ -38,7 +38,10 @@ app.set("view engine", "ejs");
 app.engine("html", ejs.renderFile);
 
 //define some data about the site
-var siteData = {siteName: "Tamnet"};
+//site will know which user is on using username
+var siteData = {
+    siteName: "Tamnet",
+};
 
 //Require main.js module
 require("./routes/main")(app, siteData);

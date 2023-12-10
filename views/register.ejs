@@ -6,6 +6,20 @@
     <title>Sign up!</title>
 </head>
 <body>
-    <h1>This is where register page will go</h1>
+    <div class="register-box">
+    <form action="/register" method="POST">
+        <h1>Sign up!</h1>
+        <% if(errMessage) { %>
+            <p class="alert"><%=errMessage %></p>
+        <% } %>
+        <p>Username<input class="form" type="form" id="username" name="username" required></p>
+        <p>Password<input class="form" type="password" id="password" name="password" required></p>
+        <button class="sign-up-button" type="submit">sign up</button>
+        <p>Already have an account? <a href="/">sign in here</a></p>
+    </form>  
+       
+    </div>
+    
+
 </body>
 </html>

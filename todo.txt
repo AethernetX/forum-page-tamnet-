@@ -1,9 +1,3 @@
-import mysql in index.js when it's time
-define database when it's time
-connect database when it's time
-
-colour scheme
-
 query of a user should be done in url link
 if it doesn't exist, return a sorry we couldn't find this user
 
@@ -14,11 +8,11 @@ for topics page, figure out how to load all topic content
 
 make sure there is a route for all views
 
-make logout button stand out?
-
 register page? --> (when user opens page)
 register --> homepage
 sign out button?
+
+registered page for when user has registered
 
 colour
 https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=Poppins-Poppins
