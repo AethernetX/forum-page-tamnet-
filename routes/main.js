@@ -27,10 +27,19 @@ module.exports = function(app, siteData){
             if(err){
                 res.redirect("./");
             }
+
+            let newData = Object.assign({}, siteData, {errMessage:""});
+
+            //if username is taken, send error
             if(result.length > 0){
-                let newData = Object.assign({}, siteData, {errMessage:"Username is taken"});
+                newData.errMessage = "Username is taken";
                 res.render("register.ejs", newData);
-            } else {
+            } else if(req.body.username.length < 3){
+                newData.errMessage = "Username is too short";
+                res.render("register.ejs", newData);               
+            }
+            
+            else {
                 res.redirect("/registered");
             }
         });
