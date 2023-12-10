@@ -88,20 +88,18 @@ body {
 }
 
 .sign-in-button{
+    border-style: none;
     padding: 0.5rem;
     width: max-content;
     background-color: #74D2CD;
     transition: ease-out 100ms;
+    color: #fff;
+    text-decoration: none;
 }
 
 .sign-in-button:hover{
     background-color: #DC2B9E;
     transition: ease-out 100ms;
-}
-
-.sign-in-button a{
-    color: #fff;
-    text-decoration: none;
 }
 
 .form {
@@ -123,20 +121,18 @@ body {
 }
 
 .sign-up-button{
+    border-style: none;
     padding: 0.5rem;
     width: max-content;
     background-color: rgb(116, 210, 116);
     transition: ease-out 100ms;
+    color: #fff;
+    text-decoration: none;
 }
 
 .sign-up-button:hover{
     background-color: rgb(166, 213, 166);
     transition: ease-out 100ms;
-}
-
-.sign-up-button a{
-    color: #fff;
-    text-decoration: none;
 }
 
 .form {

@@ -5,6 +5,20 @@ module.exports = function(app, siteData){
         res.render("login.ejs", siteData);
     });
 
+    app.post("/", function(req, res){
+        let sqlquery = "SELECT * FROM users WHERE username= ? AND password= ?"
+        db.query(sqlquery, [req.body.username, req.body.password], (err, result) =>{            
+            //err check
+            if(err){
+                res.redirect("./");
+            }
+            //if there is a result then take them to the home page
+            if(result != 0){
+                res.redirect("/home");
+            }
+        })
+    })
+
     app.get("/home", function(req,res){
         res.render("index.ejs", siteData);
     });
@@ -52,10 +66,8 @@ module.exports = function(app, siteData){
         });
     });
 
-
-
     app.get("/registered", function(req, res){
-        res.send("successful");
+        res.render("registered.ejs", siteData);
     });
 
     app.get("/post", function(req, res){

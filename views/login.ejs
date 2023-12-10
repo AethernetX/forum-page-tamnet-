@@ -7,12 +7,15 @@
 </head>
 <body>
     <div class="login-box">
-        <h1>Welcome back</h1>
-        <p>Username<input class="form" type="form"></p>
-        <p>Password<input class="form" type="password"></p>
-        <p>click sign in (login does nothing right now)</p>
-        <div class="sign-in-button"><a href="/home">sign in</a></div>
-        <p>Don't have an account? <a href="/register">register here!</a></p>
+        <form action="/" method="POST">
+            <h1>Welcome back</h1>
+            <p>Username<input class="form" type="form" id="username" name="username" required></p>
+            <p>Password<input class="form" type="password" id="password" name="password" required></p>
+            <p>click sign in (login does nothing right now)</p>
+            <button class="sign-in-button" type="submit">sign in</button>
+            <p>Don't have an account? <a href="/register">register here!</a></p>
+        </form>
+        
     </div>
     
 </body>
