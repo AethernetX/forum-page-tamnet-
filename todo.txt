@@ -12,7 +12,9 @@ register page? --> (when user opens page)
 register --> homepage
 sign out button?
 
-registered page for when user has registered
+registered page for when user has registered -> almost done
+
+add a way to validate if the username isn't found or password is incorrect
 
 colour
 https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=Poppins-Poppins

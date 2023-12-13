@@ -2,7 +2,9 @@ module.exports = function(app, siteData){
     //handle routes here
 
     app.get("/", function(req, res){
-        res.render("login.ejs", siteData);
+
+        let newData = Object.assign({}, siteData, {errMessage:""});
+        res.render("login.ejs", newData);
     });
 
     app.post("/", function(req, res){
@@ -15,6 +17,9 @@ module.exports = function(app, siteData){
             //if there is a result then take them to the home page
             if(result != 0){
                 res.redirect("/home");
+            } else {
+                let newData = Object.assign({}, siteData, {errMessage:"Username not found or password incorrect"});
+                res.render("login.ejs", newData);
             }
         })
     })
