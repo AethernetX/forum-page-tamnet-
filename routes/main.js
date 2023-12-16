@@ -27,6 +27,10 @@ module.exports = function(app, siteData){
 
     //home page
     app.get("/home", function(req,res){
+        // check if user is in session
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
         res.render("index.ejs", {siteData, user: req.session.user});
     });
 
@@ -75,6 +79,10 @@ module.exports = function(app, siteData){
 
     //topics list
     app.get("/topics", function (req, res){
+        // check if user is in session
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
         let sqlquery = "SELECT * FROM topics";
         db.query(sqlquery, (err, result) => {
             //if err
@@ -91,11 +99,19 @@ module.exports = function(app, siteData){
 
     //post
     app.get("/post", function(req, res){
+        // check if user is in session
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
         res.render("post.ejs", siteData);
     });
 
     //about
     app.get("/about", function(req, res){
+        // check if user is in session
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
         res.render("about.ejs", siteData);
     })
 
