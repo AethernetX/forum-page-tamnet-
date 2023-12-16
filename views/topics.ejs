@@ -6,15 +6,19 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">Tamnet</div>
+        <div class="logo"><a href="/home">Tamnet</a></div>
         <div class="navbar-links">
             <ul>
                 <li><a href="#">Users</a></li>
                 <li><a href="/topics">Topics</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="#" class="logout">Logout</a></li>
             </ul>
         </div>
     </nav>
+    <div class="new-topic">
+        <p>can't find a topic? <div class="make-topic">Make one!</div></p>
+    </div>
     <div class="topic-feed">
         <% for(topic in topics) { %>
         <div class="topic-box">

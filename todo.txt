@@ -4,17 +4,15 @@ if it doesn't exist, return a sorry we couldn't find this user
 navigation bar -- note need to possibly automate changes for links in navbar
 figure out login system -- might be okay to always join signed out
 
-for topics page, figure out how to load all topic content
+make the topic page know if the user is part of the topic -> if user already joined, have a open button, else a join button
 
 make sure there is a route for all views
+
+get latest posts from topics from latest
 
 register page? --> (when user opens page)
 register --> homepage
 sign out button?
-
-registered page for when user has registered -> almost done
-
-add a way to validate if the username isn't found or password is incorrect
 
 colour
 https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=Poppins-Poppins

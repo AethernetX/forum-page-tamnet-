@@ -1,8 +1,8 @@
 module.exports = function(app, siteData){
     //handle routes here
 
+    //login
     app.get("/", function(req, res){
-
         let newData = Object.assign({}, siteData, {errMessage:""});
         res.render("login.ejs", newData);
     });
@@ -25,11 +25,12 @@ module.exports = function(app, siteData){
         })
     })
 
+    //home page
     app.get("/home", function(req,res){
-        //get latest posts from topics in no particular order???
         res.render("index.ejs", {siteData, user: req.session.user});
     });
 
+    //register
     app.get("/register", function(req, res){
         let newData = Object.assign({}, siteData, {errMessage:""});
         res.render("register.ejs", newData); 
@@ -88,8 +89,14 @@ module.exports = function(app, siteData){
         });
     });
 
+    //post
     app.get("/post", function(req, res){
         res.render("post.ejs", siteData);
     });
+
+    //about
+    app.get("/about", function(req, res){
+        res.render("about.ejs", siteData);
+    })
 
 };
