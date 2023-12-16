@@ -1,5 +1,6 @@
 //import modules
 var express = require("express");
+var session = require("express-session");
 var ejs = require("ejs");
 var bodyparser = require("body-parser");
 var mysql = require("mysql");
@@ -26,6 +27,14 @@ db.connect((err) => {
 });
 
 global.db = db;
+
+//set up express session
+app.use(session({
+    secret: 'tamkey',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
 
 //link stylesheet
 app.use(express.static(__dirname + "/public"));

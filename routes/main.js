@@ -16,6 +16,7 @@ module.exports = function(app, siteData){
             }
             //if there is a result then take them to the home page
             if(result != 0){
+                req.session.user = req.body.username;
                 res.redirect("/home");
             } else {
                 let newData = Object.assign({}, siteData, {errMessage:"Username not found or password incorrect"});
@@ -25,7 +26,7 @@ module.exports = function(app, siteData){
     })
 
     app.get("/home", function(req,res){
-        res.render("index.ejs", siteData);
+        res.render("index.ejs", {siteData, user: req.session.user});
     });
 
     app.get("/topics", function(req,res){
