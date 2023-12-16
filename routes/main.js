@@ -77,6 +77,15 @@ module.exports = function(app, siteData){
         res.render("registered.ejs", siteData);
     });
 
+    app.get("/logout", function (req, res){
+        req.session.destroy(function(err){
+            if(err){
+                res.redirect("./");
+            }
+            res.render("logout");
+        });
+    });
+
     //topics list
     app.get("/topics", function (req, res){
         // check if user is in session
