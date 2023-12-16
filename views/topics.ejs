@@ -10,11 +10,18 @@
         <div class="navbar-links">
             <ul>
                 <li><a href="#">Users</a></li>
-                <li><a href="#">Topics</a></li>
+                <li><a href="/topics">Topics</a></li>
                 <li><a href="#" class="logout">Logout</a></li>
             </ul>
         </div>
     </nav>
-    <h1>Topics will go here</h1>
+    <div class="topic-feed">
+        <% for(topic in topics) { %>
+        <div class="topic-box">
+            <h1><%= topics[topic].name %></h1>
+            <p><%= topics[topic].description %></p>
+        </div>
+        <% } %>
+    </div>
 </body>
 </html>

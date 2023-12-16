@@ -151,13 +151,13 @@ body {
     bottom: 0;
     left: 0;
     width: 50%;
-    height: 650px;
     border-radius: 3px;
 }
 
 .post{
     background-color: #cfe9eb;
     padding: 1rem 1rem 1rem 1rem;
+    overflow-wrap: break-word;
     border-radius: 5px;
     border: solid;
     border-width: 1px;
@@ -209,4 +209,25 @@ body {
 
 .post-button svg path{
     stroke: #eac4dd;
+}
+
+/*Topic page styling*/
+.topic-feed{
+    margin: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 700px;
+    border-radius: 3px;
+}
+
+.topic-box{
+    background-color: #cfe9eb;
+    overflow-wrap: break-word;
+    padding: 1rem;
+    border-radius: 5px;
+    border: solid;
+    border-width: 1px;
+    margin-bottom: 1rem;
 }

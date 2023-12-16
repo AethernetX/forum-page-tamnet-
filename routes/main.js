@@ -26,11 +26,8 @@ module.exports = function(app, siteData){
     })
 
     app.get("/home", function(req,res){
+        //get latest posts from topics in no particular order???
         res.render("index.ejs", {siteData, user: req.session.user});
-    });
-
-    app.get("/topics", function(req,res){
-        res.render("topics.ejs", siteData);
     });
 
     app.get("/register", function(req, res){
@@ -48,7 +45,6 @@ module.exports = function(app, siteData){
             }
 
             let newData = Object.assign({}, siteData, {errMessage:""});
-
             //if username is taken, send error
             if(result.length > 0){
                 newData.errMessage = "Username is taken";
@@ -74,6 +70,22 @@ module.exports = function(app, siteData){
 
     app.get("/registered", function(req, res){
         res.render("registered.ejs", siteData);
+    });
+
+    //topics list
+    app.get("/topics", function (req, res){
+        let sqlquery = "SELECT * FROM topics";
+        db.query(sqlquery, (err, result) => {
+            //if err
+            if(err){
+                res.redirect("./");
+            }
+
+            let newData = Object.assign({}, siteData, {topics: result});
+            console.log(newData);
+            res.render("topics.ejs", newData);
+        
+        });
     });
 
     app.get("/post", function(req, res){
