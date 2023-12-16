@@ -1,6 +1,9 @@
 # Tamnet
 
-Tamnet is a forum page similar to reddit and quora. I's built on Node, Express, EJS and MySql.
+Tamnet is a forum page similar to reddit and quora. I's built on Node, Express, Express-session, Body-parser, EJS and MySql.
+
+***DISCLAIMER:***
+This project is not design for production in mind, thus does not include security features. Ensure that users are aware that the data being stored is not protected. It is recommended to import a library such as bcrypt.
 
 ## features
 Tamnet includes the following...
