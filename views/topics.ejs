@@ -16,10 +16,11 @@
             </ul>
         </div>
     </nav>
-    <div class="new-topic">
-        <p>can't find a topic? <div class="make-topic">Make one!</div></p>
-    </div>
     <div class="topic-feed">
+    <div class="new-topic">
+        <p>can't find a topic?</p>
+        <div class="make-topic"><a href="/new-topic">Make one!</a></div>
+    </div>
         <% for(topic in topics) { %>
         <div class="topic-box">
             <h1><%= topics[topic].name %></h1>

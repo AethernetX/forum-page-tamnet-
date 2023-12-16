@@ -16,3 +16,6 @@ sign out button?
 
 colour
 https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=Poppins-Poppins
+
+
+try sticky positioning for the topic page

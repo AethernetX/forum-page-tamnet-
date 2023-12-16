@@ -16,7 +16,6 @@ body {
     position: relative;
     justify-content: space-between;
     align-items: center;
-/*    background-color: #023436;*/
     color: white;
 }
 
@@ -220,6 +219,37 @@ body {
     width: 60%;
     height: 700px;
     border-radius: 3px;
+}
+
+.new-topic{
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    background-color: #DC2B9E;
+    align-content: center;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.new-topic > *{
+    color: #ffffff;
+    display: block;
+    margin: 5px;
+    padding: 5px;    
+}
+
+.make-topic {
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.make-topic:hover{
+    background-color: #74D2CD;
+}
+
+.make-topic a{
+    color: black;
+    text-decoration: none;
 }
 
 .topic-box{
