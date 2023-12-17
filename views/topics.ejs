@@ -12,7 +12,8 @@
                 <li><a href="#">Users</a></li>
                 <li><a href="/topics">Topics</a></li>
                 <li><a href="/about">About</a></li>
-                 <li><a href="/logout" class="logout">Logout</a></li>            </ul>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
         </div>
     </nav>
     <div class="topic-feed">
@@ -24,7 +25,18 @@
         <div class="topic-box">
             <h1><%= topics[topic].name %></h1>
             <p><%= topics[topic].description %></p>
+            <form method="POST" action="/topics">
+                <button class="join">join</button>
+            </form>
+        </div>
+        <% } %>
 
+        <div class="new-topic"><p>Topics you have already joined</p></div>
+        <% for(topic in joined) { %>
+        <div class="topic-box">
+            <h1><%= joined[topic].name %></h1>
+            <p><%= joined[topic].description %></p>
+            <div class="open-topic"><a href=<%= "/topics/" + joined[topic].name %>>open</a></div>
         </div>
         <% } %>
     </div>

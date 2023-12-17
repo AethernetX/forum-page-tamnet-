@@ -224,7 +224,6 @@ body {
 .new-topic{
     display: flex;
     justify-content: space-between;
-    position: sticky;
     background-color: #DC2B9E;
     align-content: center;
     border-radius: 5px;
@@ -260,4 +259,23 @@ body {
     border: solid;
     border-width: 1px;
     margin-bottom: 1rem;
+}
+
+.open-topic{
+    background-color: #DC2B9E;
+    display: block;
+    width: fit-content;
+
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.open-topic a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.open-topic:hover{
+    background-color: #e574bd;
 }

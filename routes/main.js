@@ -16,7 +16,7 @@ module.exports = function(app, siteData){
             }
             //if there is a result then take them to the home page
             if(result != 0){
-                req.session.user = req.body.username;
+                req.session.user = {username: req.body.username, id: result[0].user_id};
                 res.redirect("/home");
             } else {
                 let newData = Object.assign({}, siteData, {errMessage:"Username not found or password incorrect"});
@@ -92,19 +92,31 @@ module.exports = function(app, siteData){
         if(req.session.user == undefined){
             res.redirect("/");
         }
-        let sqlquery = "SELECT * FROM topics";
-        db.query(sqlquery, (err, result) => {
+
+        //topics user hasn't joined
+        db.query("SELECT * FROM topics", (err, result) => {
             //if err
             if(err){
                 res.redirect("./");
             }
+            
+            let unjoined = result;
 
-            let newData = Object.assign({}, siteData, {topics: result});
-            console.log(newData);
-            res.render("topics.ejs", newData);
-        
+            //topics users have joined
+            db.query("SELECT * FROM topics WHERE topic_id = 1", (err, result) => {
+                if(err){
+                    res.redirect("./");
+                }
+                let joined = result;
+                console.log(unjoined);
+                console.log(joined);
+                res.render("topics.ejs", {siteData, topics: unjoined, joined: joined}); 
+            })     
         });
-    });
+
+     });
+
+
 
     //post
     app.get("/post", function(req, res){
