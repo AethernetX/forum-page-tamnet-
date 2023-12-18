@@ -93,8 +93,11 @@ module.exports = function(app, siteData){
             res.redirect("/");
         }
 
+        let njoin = "SELECT topics.topic_id, topics.name FROM topics LEFT JOIN topic_user ON topics.topic_id = topic_user.topic_id AND topic_user.user_id = " + req.session.user.id + " WHERE topic_user.user_id IS NULL";
+        let joinquery = "SELECT * FROM topics LEFT JOIN topic_user USING (topic_id) LEFT JOIN users USING (user_id) WHERE user_id = " + req.session.user.id;
+
         //topics user hasn't joined
-        db.query("SELECT * FROM topics", (err, result) => {
+        db.query(njoin, (err, result) => {
             //if err
             if(err){
                 res.redirect("./");
@@ -103,20 +106,30 @@ module.exports = function(app, siteData){
             let unjoined = result;
 
             //topics users have joined
-            db.query("SELECT * FROM topics WHERE topic_id = 1", (err, result) => {
+            db.query(joinquery, (err, result) => {
                 if(err){
                     res.redirect("./");
                 }
                 let joined = result;
-                console.log(unjoined);
-                console.log(joined);
                 res.render("topics.ejs", {siteData, topics: unjoined, joined: joined}); 
             })     
         });
 
      });
 
+    //make user join topic
+     app.post("/topics", function(req, res){
+        console.log(req.body.topicID);
+        let parsedinput = parseInt(req.body.topicID);
+        db.query("INSERT INTO topic_user (user_id, topic_id) VALUES (?,?)", [req.session.user.id, parsedinput], (err, result) => {
 
+            if(err){
+                res.redirect("./");
+            } else{
+                res.redirect("/topics");
+            }
+        });
+     });
 
     //post
     app.get("/post", function(req, res){

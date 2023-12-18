@@ -265,7 +265,6 @@ body {
     background-color: #DC2B9E;
     display: block;
     width: fit-content;
-
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -277,5 +276,20 @@ body {
 }
 
 .open-topic:hover{
+    background-color: #e574bd;
+}
+
+.join{
+    background-color: #DC2B9E;
+    color: #ffffff;
+    display: block;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.join:hover{
     background-color: #e574bd;
 }

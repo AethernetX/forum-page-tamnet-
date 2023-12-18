@@ -26,6 +26,7 @@
             <h1><%= topics[topic].name %></h1>
             <p><%= topics[topic].description %></p>
             <form method="POST" action="/topics">
+                <input type="hidden" name="topicID" value=<%= topics[topic].topic_id %>>
                 <button class="join">join</button>
             </form>
         </div>
