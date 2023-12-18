@@ -118,8 +118,7 @@ module.exports = function(app, siteData){
      });
 
     //make user join topic
-     app.post("/topics", function(req, res){
-        console.log(req.body.topicID);
+    app.post("/topics", function(req, res){
         let parsedinput = parseInt(req.body.topicID);
         db.query("INSERT INTO topic_user (user_id, topic_id) VALUES (?,?)", [req.session.user.id, parsedinput], (err, result) => {
 
@@ -130,6 +129,17 @@ module.exports = function(app, siteData){
             }
         });
      });
+
+    //show all users in site
+    app.get("/users", function(req, res){
+        db.query("SELECT * FROM users", (err,result) => {
+            if(err){
+                res.redirect("./");
+            } else {
+                res.render("users.ejs", {siteData, results: result});
+            }
+        });
+    });
 
     //post
     app.get("/post", function(req, res){

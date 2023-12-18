@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">    
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <title>Homepage</title>
+    <title>Users</title>
 </head>
 <body>
     <nav class="navbar">
@@ -13,11 +13,16 @@
                 <li><a href="/users">Users</a></li>
                 <li><a href="/topics">Topics</a></li>
                 <li><a href="/about">About</a></li>
-                 <li><a href="/logout" class="logout">Logout</a></li>            </ul>
+                 <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
         </div>
     </nav>
-    <p>
-        A forum app where you can join topics, post in them and interact with other posts.
-    </p>
+    <div class="users-list">
+        <% for(users in results){ %>
+        <div class="user-box">
+            <h1><%= results[users].username %></h1>
+        </div>
+        <% } %>
+    </div>
 </body>
-</html> 
+</html>
