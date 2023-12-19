@@ -17,6 +17,22 @@
             </ul>
         </div>
     </nav>
-    <h1>Post page</h1>
+    <div class="post-box">
+        <h1>Post something!</h1>
+        <form method="post" action="/post">
+            <p>Select a topic
+            <select name="topic-post">
+                <option value="">--Select a topic--</option>
+                <option value="MeowMeows">MeowMeows</option>
+            </select>
+            </p>
+            <p>Title 
+                <input type="text" name="title" required>
+            </p>
+            <p>Enter text underneath</p>
+            <textarea maxlength="400" name="content"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

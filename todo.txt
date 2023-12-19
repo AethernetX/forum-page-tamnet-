@@ -1,20 +1,21 @@
-query of a user should be done in url link
-if it doesn't exist, return a sorry we couldn't find this user
-
-navigation bar -- note need to possibly automate changes for links in navbar
-figure out login system -- might be okay to always join signed out
-
-make the topic page know if the user is part of the topic -> if user already joined, have a open button, else a join button
-
 make sure there is a route for all views
 
 get latest posts from topics from latest
 
-register page? --> (when user opens page)
-register --> homepage
-sign out button?
-
 colour
 https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=Poppins-Poppins
 
+
+---------------MUST DO------------------------------------------------
+
 Add a visit button to see what kind of posts the user has made
+
+If a user has not joined any topics yet, tell them to join one
+if a user has joined all topics, recommend them to make a new topic
+
+when a user clicks open topic, do a query on the link to search for the topic posts
+
+If a user clicks a user profile, do a user query on the username on the link
+if it doesn't exist, return a sorry we couldn't find this user
+
+Option to make a new topic
