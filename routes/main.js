@@ -38,8 +38,17 @@ module.exports = function(app, siteData){
         // check if user is in session
         if(req.session.user == undefined){
             res.redirect("/");
-        }
-        res.render("index.ejs", {siteData, user: req.session.user});
+        }     
+
+        let sqlquery = "SELECT * FROM posts JOIN users ON posts.user_id = users.user_id JOIN topic_user ON topic_user.topic_id = posts.topic_id JOIN topics ON topics.topic_id = topic_user.topic_id WHERE topic_user.user_id = ? ORDER BY post_time DESC";
+
+        db.query(sqlquery, [req.session.user.id], (err, result)=>{
+            //err check
+            if(err){
+                res.redirect("./");
+            }
+            res.render("index.ejs", {siteData, feed: result});
+        });
     });
 
     //register
@@ -101,11 +110,11 @@ module.exports = function(app, siteData){
             res.redirect("/");
         }
 
-        let njoin = "SELECT topics.topic_id, topics.name FROM topics LEFT JOIN topic_user ON topics.topic_id = topic_user.topic_id AND topic_user.user_id = " + req.session.user.id + " WHERE topic_user.user_id IS NULL";
-        let joinquery = "SELECT * FROM topics LEFT JOIN topic_user USING (topic_id) LEFT JOIN users USING (user_id) WHERE user_id = " + req.session.user.id;
+        let njoin = "SELECT topics.topic_id, topics.name FROM topics LEFT JOIN topic_user ON topics.topic_id = topic_user.topic_id AND topic_user.user_id = ? WHERE topic_user.user_id IS NULL";
+        let joinquery = "SELECT * FROM topics LEFT JOIN topic_user USING (topic_id) LEFT JOIN users USING (user_id) WHERE user_id = ?";
 
         //topics user hasn't joined
-        db.query(njoin, (err, result) => {
+        db.query(njoin,[req.session.user.id],(err, result) => {
             //if err
             if(err){
                 res.redirect("./");
@@ -114,7 +123,7 @@ module.exports = function(app, siteData){
             let unjoined = result;
 
             //topics users have joined
-            db.query(joinquery, (err, result) => {
+            db.query(joinquery,[req.session.user.id],(err, result) => {
                 if(err){
                     res.redirect("./");
                 }
