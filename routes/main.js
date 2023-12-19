@@ -3,8 +3,16 @@ module.exports = function(app, siteData){
 
     //login
     app.get("/", function(req, res){
-        let newData = Object.assign({}, siteData, {errMessage:""});
-        res.render("login.ejs", newData);
+
+        //if a user is already signed in, take them to homepage
+        if(req.session.user == undefined){
+            let newData = Object.assign({}, siteData, {errMessage:""});
+            res.render("login.ejs", newData);
+        } else {
+            res.redirect("/home");
+        }
+
+
     });
 
     app.post("/", function(req, res){
@@ -145,9 +153,34 @@ module.exports = function(app, siteData){
     app.get("/post", function(req, res){
         // check if user is in session
         if(req.session.user == undefined){
+            res.redirect("./");
+        }
+
+        //first show all of the topics the user can submit in
+        db.query("SELECT * FROM topics LEFT JOIN topic_user USING (topic_id) LEFT JOIN users USING (user_id) WHERE user_id = ?", [req.session.user.id], (err,result) => {
+            if(err){
+                res.redirect("./");
+            }
+            res.render("post.ejs", {siteData, results: result});
+        });
+    });
+
+    app.post("/post", function(req,res){
+        // check if user is in session
+        if(req.session.user == undefined){
             res.redirect("/");
         }
-        res.render("post.ejs", siteData);
+
+        //insert data
+        let parsedID = parseInt(req.body.topic_id);
+        db.query("INSERT INTO posts (title, description, user_id, topic_id) VALUES (?,?,?,?)", [req.body.title, req.body.content, req.session.user.id, parsedID],(err,result)=>{
+            if(err){
+                res.redirect("./");
+            }
+
+            res.redirect("/home");
+        });
+
     });
 
     //about

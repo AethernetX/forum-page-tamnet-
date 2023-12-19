@@ -19,3 +19,7 @@ If a user clicks a user profile, do a user query on the username on the link
 if it doesn't exist, return a sorry we couldn't find this user
 
 Option to make a new topic
+
+if the user is in the logout page, give them the option to go to the homepage
+
+if the user forgets to pick a topic, give them an error

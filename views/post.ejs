@@ -21,13 +21,15 @@
         <h1>Post something!</h1>
         <form method="post" action="/post">
             <p>Select a topic
-            <select name="topic-post">
+            <select name="topic_id" required>
                 <option value="">--Select a topic--</option>
-                <option value="MeowMeows">MeowMeows</option>
+                <% for(option in results) { %>
+                <option value=<%= results[option].topic_id %>><%= results[option].name %></option>
+                <% } %>
             </select>
             </p>
             <p>Title 
-                <input type="text" name="title" required>
+                <input type="text" name="title" maxlength="15" required>
             </p>
             <p>Enter text underneath</p>
             <textarea maxlength="400" name="content"></textarea>
