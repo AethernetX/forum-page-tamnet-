@@ -21,7 +21,7 @@
         <% for(users in results){ %>
         <div class="user-box">
             <h1><%= results[users].username %></h1>
-            <a class="visit-user" href=<%= "/user/" + results[users].username %>>Visit</a>
+            <a class="visit-user" href=<%= "/users/" + results[users].username %>>Visit</a>
         </div>
         <% } %>
     </div>

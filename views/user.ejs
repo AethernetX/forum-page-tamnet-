@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title><%= username %></title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="/home">Tamnet</a></div>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="/users">Users</a></li>
+                <li><a href="/topics">Topics</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+     <div class="feed">
+        <% if(errMessage == undefined) { %>
+        <% for(post in feed){ %>
+        <div class="post">
+            <div class="topic-tab">
+                @<%= username %> in @<%= feed[post].name%>
+            </div>
+            <div class="post-title">
+                <%= feed[post].title %>
+            </div>
+            <div class="content-preview">
+                <%= feed[post].description %>
+            </div>
+        </div>
+        <% } %>
+        <% } else { %>
+            <h1><%= errMessage %></h1>
+        <% } %>
+    </div>
+</body>
+</html>

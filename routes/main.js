@@ -140,6 +140,11 @@ module.exports = function(app, siteData){
 
     //make user join topic
     app.post("/topics", function(req, res){
+
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
+
         let parsedinput = parseInt(req.body.topicID);
         db.query("INSERT INTO topic_user (user_id, topic_id) VALUES (?,?)", [req.session.user.id, parsedinput], (err, result) => {
 
@@ -153,6 +158,10 @@ module.exports = function(app, siteData){
 
     //show all users in site
     app.get("/users", function(req, res){
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
+
         db.query("SELECT * FROM users", (err,result) => {
             if(err){
                 res.redirect("./");
@@ -213,6 +222,44 @@ module.exports = function(app, siteData){
             res.redirect("/");
         }
         res.render("about.ejs", siteData);
-    })
+    });
+
+    //user visit
+    app.get("/users/:username", function(req, res){
+        if(req.session.user == undefined){
+            res.redirect("./");
+        }
+
+        db.query("SELECT * FROM users WHERE username = ?", [req.params.username], (err, result) =>{
+            if(err){
+                res.redirect("./");
+            }
+
+            //check if the user exists
+            if(result == 0){
+                res.render("user.ejs", {siteData, feed: "", username: req.params.username, errMessage: "User does not exist!!!"})
+            }
+
+            let sqlquery = "SELECT users.username, users.user_id, posts.*, topics.topic_id, topics.name FROM users JOIN posts ON posts.user_id = users.user_id JOIN topics ON posts.topic_id = topics.topic_id WHERE users.username = ? ORDER BY post_time DESC"
+
+            db.query(sqlquery, [req.params.username], (err, result) => {
+                if(err){
+                    res.redirect("./");
+                }
+                let error;
+                //if the user has no posts
+                if(result.length < 1){
+                    error = "the user has not posted anything yet!!"
+                }
+                //once everything is successful
+                res.render("user.ejs", {siteData, feed: result, username: req.params.username, errMessage: error});
+
+            });
+
+        });
+
+
+
+    });
 
 };
