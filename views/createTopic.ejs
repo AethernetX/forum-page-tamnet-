@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Sign up!</title>
+</head>
+<body>
+    <nav class="navbar">
+            <div class="logo"><a href="/home">Tamnet</a></div>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="/users">Users</a></li>
+                    <li><a href="/topics">Topics</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/logout" class="logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="post-box">
+                <h1>Make a new topic!</h1>
+                <form method="post" action="/new-topic">
+                    <p>Name the topic?
+                        <input type="text" name="title" maxlength="15" required>
+                    </p>
+                    <p>Enter description underneath</p>
+                    <textarea maxlength="200" name="description"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+</body>

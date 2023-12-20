@@ -1,7 +1,5 @@
 make sure there is a route for all views
 
-get latest posts from topics from latest
-
 colour
 https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=Poppins-Poppins
 
@@ -10,16 +8,10 @@ https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=
 
 Add a visit button to see what kind of posts the user has made
 
-If a user has not joined any topics yet, tell them to join one
-if a user has joined all topics, recommend them to make a new topic
-
 when a user clicks open topic, do a query on the link to search for the topic posts
 
 If a user clicks a user profile, do a user query on the username on the link
 if it doesn't exist, return a sorry we couldn't find this user
 
-Option to make a new topic
-
-if the user is in the logout page, give them the option to go to the homepage
-
-if the user forgets to pick a topic, give them an error
+in the user list, add a button to visit a user profile
+Add option to make new topics

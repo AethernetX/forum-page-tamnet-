@@ -40,7 +40,7 @@ module.exports = function(app, siteData){
             res.redirect("/");
         }     
 
-        let sqlquery = "SELECT * FROM posts JOIN users ON posts.user_id = users.user_id JOIN topic_user ON topic_user.topic_id = posts.topic_id JOIN topics ON topics.topic_id = topic_user.topic_id WHERE topic_user.user_id = ? ORDER BY post_time DESC";
+        let sqlquery = "SELECT posts.*, topics.topic_id, topics.name, users.user_id, users.username FROM posts JOIN users ON posts.user_id = users.user_id JOIN topic_user ON topic_user.topic_id = posts.topic_id JOIN topics ON topics.topic_id = topic_user.topic_id WHERE topic_user.user_id = ? ORDER BY post_time DESC";
 
         db.query(sqlquery, [req.session.user.id], (err, result)=>{
             //err check
@@ -71,12 +71,7 @@ module.exports = function(app, siteData){
             if(result.length > 0){
                 newData.errMessage = "Username is taken";
                 res.render("register.ejs", newData);
-            } else if(req.body.username.length < 3 || req.body.username.length > 15){
-                newData.errMessage = "Username must have 3 - 15 characters";
-                res.render("register.ejs", newData);               
-            }
-            //if nothing fails insert a new user
-            else {
+            } else {
                 let insertQuery = "INSERT INTO users (username, password) VALUES (?,?)";
                 db.query(insertQuery, [req.body.username, req.body.password], (err) => {
                     //err check
@@ -110,7 +105,7 @@ module.exports = function(app, siteData){
             res.redirect("/");
         }
 
-        let njoin = "SELECT topics.topic_id, topics.name FROM topics LEFT JOIN topic_user ON topics.topic_id = topic_user.topic_id AND topic_user.user_id = ? WHERE topic_user.user_id IS NULL";
+        let njoin = "SELECT topics.topic_id, topics.name, topics.description FROM topics LEFT JOIN topic_user ON topics.topic_id = topic_user.topic_id AND topic_user.user_id = ? WHERE topic_user.user_id IS NULL";
         let joinquery = "SELECT * FROM topics LEFT JOIN topic_user USING (topic_id) LEFT JOIN users USING (user_id) WHERE user_id = ?";
 
         //topics user hasn't joined
@@ -132,7 +127,16 @@ module.exports = function(app, siteData){
             })     
         });
 
-     });
+    });
+
+    app.post("/new-topic", function(req,res){
+        db.query("INSERT INTO topics (name, description) VALUES (?,?)", [req.body.title, req.body.description], (err, result) => {
+            if(err){
+                res.redirect("./");
+            }
+            res.redirect("/topics");
+        });
+    });
 
     //make user join topic
     app.post("/topics", function(req, res){
@@ -158,6 +162,11 @@ module.exports = function(app, siteData){
         });
     });
 
+    //make topic page
+    app.get("/new-topic", function(req, res){
+        res.render("createTopic.ejs", siteData);
+    });
+
     //post
     app.get("/post", function(req, res){
         // check if user is in session
@@ -170,7 +179,12 @@ module.exports = function(app, siteData){
             if(err){
                 res.redirect("./");
             }
-            res.render("post.ejs", {siteData, results: result});
+            let errorMessage = "";
+            if(result.length == 0){
+                errorMessage = "Please join topics to start posting!"
+            }
+
+            res.render("post.ejs", {siteData, results: result, errMessage: errorMessage});
         });
     });
 

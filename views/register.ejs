@@ -12,7 +12,7 @@
         <% if(errMessage) { %>
             <p class="alert"><%=errMessage %></p>
         <% } %>
-        <p>Username<input class="form" type="form" id="username" name="username" required></p>
+        <p>Username<input class="form" type="form" id="username" name="username" minlength="3" maxlength="15" required></p>
         <p>Password<input class="form" type="password" id="password" name="password" required></p>
         <button class="sign-up-button" type="submit">sign up</button>
         <p>Already have an account? <a href="/">sign in here</a></p>
