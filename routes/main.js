@@ -227,10 +227,10 @@ module.exports = function(app, siteData){
     //user visit
     app.get("/users/:username", function(req, res){
         if(req.session.user == undefined){
-            res.redirect("./");
+            res.redirect("/");
         }
 
-        db.query("SELECT * FROM users WHERE username = ?", [req.params.username], (err, result) =>{
+        db.query("SELECT users.username FROM users WHERE username = ?", [req.params.username], (err, result) =>{
             if(err){
                 res.redirect("./");
             }
@@ -258,8 +258,39 @@ module.exports = function(app, siteData){
 
         });
 
-
-
     });
 
+
+    //topics visit
+    app.get("/topics/:name", function(req,res){
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
+
+        db.query("SELECT topics.name FROM topics WHERE name = ?",[req.params.name], (err, result)=>{
+            if(err){
+                res.redirect("./");
+            }
+            //check if topic exists
+            if(result == 0){
+                res.render("topic.ejs", {siteData, feed: "", name: req.params.name, errMessage: "Topic does not exist!!!"})
+            }
+
+            let sqlquery = "SELECT posts.*, topics.topic_id, topics.name, users.user_id, users.username FROM topics JOIN posts ON topics.topic_id = posts.topic_id JOIN users ON posts.user_id = users.user_id WHERE topics.name = ? ORDER BY post_time DESC"
+
+            db.query(sqlquery, [req.params.name], (err, result) => {
+                if(err){
+                    res.redirect("./");
+                }
+                let error;
+                //if the user has no posts
+                if(result.length < 1){
+                    error = "the user has not posted anything yet!!"
+                }
+                //once everything is successful
+                res.render("topic.ejs", {siteData, feed: result, name: req.params.name, errMessage: error});
+            });
+
+        });
+    });
 };

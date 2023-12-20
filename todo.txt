@@ -6,8 +6,4 @@ https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=
 
 ---------------MUST DO------------------------------------------------
 
-
-when a user clicks open topic, do a query on the link to search for the topic posts
-
-If a user clicks a user profile, do a user query on the username on the link
-if it doesn't exist, return a sorry we couldn't find this user
+search for post function
