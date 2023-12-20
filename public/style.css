@@ -180,8 +180,7 @@ body {
 /*Post button*/
 .post-button{
     background-color: #DC2B9E;
-    position: fixed;
-    
+    position: fixed; 
     bottom: 10%;
     right: 10%;
     width: 3rem;
@@ -304,11 +303,36 @@ body {
 .user-box{
     background-color: #cfe9eb;
     overflow-wrap: break-word;
+    display: flex;
+    justify-content: space-between;
     padding: 1rem;
     border-radius: 5px;
     border: solid;
     border-width: 1px;
     margin-bottom: 1rem;
+}
+
+.visit-user{
+    background-color: #DC2B9E;
+    display: block;
+    height: fit-content;
+    transform: translateY(1rem);
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-top: .5rem;
+    margin-right: .2rem;
+}
+
+.visit-user:hover{
+    background-color: #e574bd;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-top: .5rem;
+    margin-right: .2rem;   
 }
 
 /*Post page*/
