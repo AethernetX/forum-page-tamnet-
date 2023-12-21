@@ -7,3 +7,5 @@ https://www.realtimecolors.com/?colors=000000-bed6d8-74d2cd-c1ebcd-dc2b9e&fonts=
 ---------------MUST DO------------------------------------------------
 
 search for post function
+
+make the sql files so someone can upload it on their own machine

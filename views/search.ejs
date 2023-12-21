@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">    
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <title><%= name %></title>
+    <title>Search</title>
 </head>
 <body>
     <nav class="navbar">
@@ -19,23 +19,10 @@
         </div>
     </nav>
      <div class="feed">
-        <% if(errMessage == undefined) { %>
-        <% for(post in feed){ %>
-        <div class="post">
-            <div class="topic-tab">
-                @<%= feed[post].username %> in @<%= name %>
-            </div>
-            <div class="post-title">
-                <%= feed[post].title %>
-            </div>
-            <div class="content-preview">
-                <%= feed[post].description %>
-            </div>
-        </div>
-        <% } %>
-        <% } else { %>
-            <h1><%= errMessage %></h1>
-        <% } %>
+        <form method="POST" action="/searching">
+            <input class="search-box" type="search" name="query">
+            <button class="search-button" type="submit">search</button>
+        </form>
     </div>
 </body>
 </html>

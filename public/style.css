@@ -371,3 +371,18 @@ body {
     border-color: black;
     border-width: 3px;
 }
+
+/*search*/
+.search-button{
+    border-style: none;
+    padding: 0.5rem;
+    width: max-content;
+    background-color: #DC2B9E;
+    transition: ease-out 100ms;
+    color: #fff;
+    text-decoration: none;
+}
+
+.search-box{
+    border-width: 3px;
+}

@@ -293,4 +293,38 @@ module.exports = function(app, siteData){
 
         });
     });
+
+    //search
+    app.get("/search", function(req,res){
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
+
+        res.render("search.ejs", {siteData, feed: [], query: ""});
+    });
+
+    app.get("/search/:search", function(req,res){
+        if(req.session.user == undefined){
+            res.redirect("/");
+        }
+
+        let sqlquery = "SELECT posts.*, topics.topic_id, topics.name, users.user_id, users.username FROM posts JOIN users ON posts.user_id = users.user_id JOIN topic_user ON topic_user.topic_id = posts.topic_id JOIN topics ON topics.topic_id = topic_user.topic_id WHERE posts.title = ? AND topic_user.user_id = ? ORDER BY post_time DESC";
+
+        db.query(sqlquery, [req.params.search, req.session.user.id], (err, result) => {
+            if(err){
+                res.redirect("./");
+            }
+
+            res.render("search-results.ejs", {siteData, feed: result, query: req.params.search});
+        });
+
+        //res.send(req.params.search);
+
+    });
+
+    app.post("/searching", function(req,res){
+        //query
+        let query = "/search/" + req.body.query;
+        res.redirect(query);
+    });
 };
