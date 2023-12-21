@@ -285,7 +285,7 @@ module.exports = function(app, siteData){
                 let error;
                 //if the user has no posts
                 if(result.length < 1){
-                    error = "the user has not posted anything yet!!"
+                    error = "the topic has nothing posted yet!!"
                 }
                 //once everything is successful
                 res.render("topic.ejs", {siteData, feed: result, name: req.params.name, errMessage: error});
