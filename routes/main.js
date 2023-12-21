@@ -9,7 +9,7 @@ module.exports = function(app, siteData){
             let newData = Object.assign({}, siteData, {errMessage:""});
             res.render("login.ejs", newData);
         } else {
-            res.redirect("/home");
+            res.redirect("./home");
         }
 
 
@@ -25,7 +25,7 @@ module.exports = function(app, siteData){
             //if there is a result then take them to the home page
             if(result != 0){
                 req.session.user = {username: req.body.username, id: result[0].user_id};
-                res.redirect("/home");
+                res.redirect("./home");
             } else {
                 let newData = Object.assign({}, siteData, {errMessage:"Username not found or password incorrect"});
                 res.render("login.ejs", newData);
@@ -37,7 +37,7 @@ module.exports = function(app, siteData){
     app.get("/home", function(req,res){
         // check if user is in session
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }     
 
         let sqlquery = "SELECT posts.*, topics.topic_id, topics.name, users.user_id, users.username FROM posts JOIN users ON posts.user_id = users.user_id JOIN topic_user ON topic_user.topic_id = posts.topic_id JOIN topics ON topics.topic_id = topic_user.topic_id WHERE topic_user.user_id = ? ORDER BY post_time DESC";
@@ -78,7 +78,7 @@ module.exports = function(app, siteData){
                     if(err){
                         res.redirect("./");
                     } else {       
-                        res.redirect("/registered");
+                        res.redirect("./registered");
                     }
                 });
             }
@@ -102,7 +102,7 @@ module.exports = function(app, siteData){
     app.get("/topics", function (req, res){
         // check if user is in session
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         let njoin = "SELECT topics.topic_id, topics.name, topics.description FROM topics LEFT JOIN topic_user ON topics.topic_id = topic_user.topic_id AND topic_user.user_id = ? WHERE topic_user.user_id IS NULL";
@@ -134,7 +134,7 @@ module.exports = function(app, siteData){
             if(err){
                 res.redirect("./");
             }
-            res.redirect("/topics");
+            res.redirect("./topics");
         });
     });
 
@@ -142,7 +142,7 @@ module.exports = function(app, siteData){
     app.post("/topics", function(req, res){
 
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         let parsedinput = parseInt(req.body.topicID);
@@ -151,7 +151,7 @@ module.exports = function(app, siteData){
             if(err){
                 res.redirect("./");
             } else{
-                res.redirect("/topics");
+                res.redirect("./topics");
             }
         });
      });
@@ -159,7 +159,7 @@ module.exports = function(app, siteData){
     //show all users in site
     app.get("/users", function(req, res){
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         db.query("SELECT * FROM users", (err,result) => {
@@ -200,7 +200,7 @@ module.exports = function(app, siteData){
     app.post("/post", function(req,res){
         // check if user is in session
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         //insert data
@@ -210,7 +210,7 @@ module.exports = function(app, siteData){
                 res.redirect("./");
             }
 
-            res.redirect("/home");
+            res.redirect("./home");
         });
 
     });
@@ -219,7 +219,7 @@ module.exports = function(app, siteData){
     app.get("/about", function(req, res){
         // check if user is in session
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
         res.render("about.ejs", siteData);
     });
@@ -227,7 +227,7 @@ module.exports = function(app, siteData){
     //user visit
     app.get("/users/:username", function(req, res){
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         db.query("SELECT users.username FROM users WHERE username = ?", [req.params.username], (err, result) =>{
@@ -264,7 +264,7 @@ module.exports = function(app, siteData){
     //topics visit
     app.get("/topics/:name", function(req,res){
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         db.query("SELECT topics.name FROM topics WHERE name = ?",[req.params.name], (err, result)=>{
@@ -297,7 +297,7 @@ module.exports = function(app, siteData){
     //search
     app.get("/search", function(req,res){
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         res.render("search.ejs", {siteData, feed: [], query: ""});
@@ -305,7 +305,7 @@ module.exports = function(app, siteData){
 
     app.get("/search/:search", function(req,res){
         if(req.session.user == undefined){
-            res.redirect("/");
+            res.redirect("./");
         }
 
         let sqlquery = "SELECT posts.*, topics.topic_id, topics.name, users.user_id, users.username FROM posts JOIN users ON posts.user_id = users.user_id JOIN topic_user ON topic_user.topic_id = posts.topic_id JOIN topics ON topics.topic_id = topic_user.topic_id WHERE posts.title = ? AND topic_user.user_id = ? ORDER BY post_time DESC";
@@ -324,7 +324,7 @@ module.exports = function(app, siteData){
 
     app.post("/searching", function(req,res){
         //query
-        let query = "/search/" + req.body.query;
+        let query = "./search/" + req.body.query;
         res.redirect(query);
     });
 };
